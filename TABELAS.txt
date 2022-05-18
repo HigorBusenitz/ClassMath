@@ -1,0 +1,66 @@
+USUARIO
+
+-- Drop table
+
+-- DROP TABLE public.usuario;
+
+CREATE TABLE public.usuario (
+	id_usuario int4 NOT NULL,
+	nome varchar(50) NOT NULL,
+	email varchar(50) NOT NULL,
+	ativo bool NOT NULL DEFAULT true,
+	CONSTRAINT id_usuario PRIMARY KEY (id_usuario)
+);
+
+
+LOGS
+
+-- Drop table
+
+-- DROP TABLE public.logs;
+
+CREATE TABLE public.logs (
+	id_log int4 NOT NULL,
+	descricao varchar(100) NOT NULL,
+	"time" timestamp NOT NULL,
+	CONSTRAINT id_log PRIMARY KEY (id_log)
+);
+
+
+INSTITUIÇOES
+
+-- Drop table
+
+-- DROP TABLE public.instituicoes;
+
+CREATE TABLE public.instituicoes (
+	id_instituicao numeric NOT NULL,
+	id_usuario int4 NOT NULL,
+	nome varchar(50) NOT NULL,
+	ativo bool NOT NULL DEFAULT true,
+	CONSTRAINT id_instituicao PRIMARY KEY (id_instituicao, id_usuario)
+);
+
+
+-- public.instituicoes foreign keys
+
+ALTER TABLE public.instituicoes ADD CONSTRAINT usuario_instituicoes_fk FOREIGN KEY (id_usuario) REFERENCES public.usuario(id_usuario);
+
+calculos
+
+-- Drop table
+
+-- DROP TABLE public.calculos;
+
+CREATE TABLE public.calculos (
+	id_calculo numeric NOT NULL,
+	id_usuario int4 NOT NULL,
+	nome varchar(50) NOT NULL,
+	equacao varchar(500) NOT NULL,
+	CONSTRAINT id_calculo PRIMARY KEY (id_calculo, id_usuario)
+);
+
+
+-- public.calculos foreign keys
+
+ALTER TABLE public.calculos ADD CONSTRAINT usuario_calculos_fk FOREIGN KEY (id_usuario) REFERENCES public.usuario(id_usuario);
