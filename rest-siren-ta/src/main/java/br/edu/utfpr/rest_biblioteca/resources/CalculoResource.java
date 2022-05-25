@@ -11,7 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/calculo")
+@RequestMapping(value = "/calculos")
 public class CalculoResource {
     @Autowired
     private CalculoService service;
@@ -38,11 +38,18 @@ public class CalculoResource {
         return ResponseEntity.created(uri).build();
     }
 
+//    @RequestMapping(method = RequestMethod.PUT)
+//    public ResponseEntity<Void> atualizarCalculos(@RequestBody Calculos calculos) {
+//        Calculos livroObj = service.atualizarCalculo(calculos);
+//        return ResponseEntity.noContent().build();
+//    }
+
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<Void> atualizarCalculos(@RequestBody Calculos calculos) {
-        Calculos livroObj = service.atualizarCalculo(calculos);
+    public ResponseEntity<Void> atualizarCalculo(@RequestBody Calculos calculos) {
+        Calculos calculos1 = service.atualizarCalculo(calculos);
         return ResponseEntity.noContent().build();
     }
+
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deletaCalculos(@PathVariable Integer id) {

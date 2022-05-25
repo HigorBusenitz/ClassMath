@@ -30,15 +30,16 @@ public class InstituicoesService {
     }
 
     public Instituicoes atualizarInstituicoes(Instituicoes instituicoes) {
-        Instituicoes novoLivro = buscarPorId(instituicoes.getCodigo());
-        atualizarInstituicoesObj(novoLivro, instituicoes);
+        Instituicoes instituicoes1 = buscarPorId(instituicoes.getCodigo());
+        atualizarInstituicoesObj(instituicoes1, instituicoes);
 
-        return repo.save(novoLivro);
+        return repo.save(instituicoes1);
     }
 
-    public void atualizarInstituicoesObj(Instituicoes novoLivro, Instituicoes instituicoes) {
-        novoLivro.setCodigo(instituicoes.getCodigo());
-        novoLivro.setNome(instituicoes.getNome());
+    public void atualizarInstituicoesObj(Instituicoes novaInstituicao, Instituicoes instituicoes) {
+        novaInstituicao.setCodigo(instituicoes.getCodigo());
+        novaInstituicao.setNome(instituicoes.getNome());
+        novaInstituicao.setAtivo(instituicoes.isAtivo());
     }
 
     public void deletaInstituicoes(Integer id) {

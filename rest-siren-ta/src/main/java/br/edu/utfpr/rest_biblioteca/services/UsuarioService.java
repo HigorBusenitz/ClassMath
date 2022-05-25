@@ -28,14 +28,17 @@ public class UsuarioService {
     }
 
     public Usuario atualizarUsuario(Usuario usuario) {
-        Usuario novoUsuario = buscarPorId(usuario.getCodigo());
-        atualizarUsuarioObj(novoUsuario, usuario);
+        Usuario atualizarUsuario = buscarPorId(usuario.getCodigo());
 
-        return repo.save(novoUsuario);
+        atualizarUsuarioObj(atualizarUsuario, usuario);
+
+        return repo.save(atualizarUsuario);
     }
 
     private void atualizarUsuarioObj(Usuario novoUsuario, Usuario usuario) {
         novoUsuario.setNome(usuario.getNome());
+        novoUsuario.setEmail(usuario.getEmail());
+        novoUsuario.setAtivo(usuario.isAtivo());
     }
 
     public void deletaUsuario(Integer id) {

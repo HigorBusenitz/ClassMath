@@ -30,16 +30,16 @@ public class CalculoService {
     }
 
     public Calculos atualizarCalculo(Calculos calculos) {
-        Calculos novoEmprestimo = buscarPorId(calculos.getCodigo());
-        calculos(novoEmprestimo, calculos);
+        Calculos atualizarCalculo = buscarPorId(calculos.getCodigo());
+        calculos(atualizarCalculo, calculos);
 
-        return repo.save(novoEmprestimo);
+        return repo.save(atualizarCalculo);
     }
 
-    public void calculos(Calculos novoEmprestimo, Calculos calculos) {
-        novoEmprestimo.setCodigo(calculos.getCodigo());
-        novoEmprestimo.setNome(calculos.getEquacao());
-        novoEmprestimo.setEquacao(calculos.getEquacao());
+    public void calculos(Calculos novoCalculos, Calculos calculos) {
+        novoCalculos.setCodigo(calculos.getCodigo());
+        novoCalculos.setNome(calculos.getNome());
+        novoCalculos.setEquacao(calculos.getEquacao());
     }
 
     public void deletaCalculo(Integer id) {
